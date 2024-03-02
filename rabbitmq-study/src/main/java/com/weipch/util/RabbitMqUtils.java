@@ -11,9 +11,9 @@ public class RabbitMqUtils {
     public static Channel getChannel() throws Exception {
         //创建一个连接工厂
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("192.168.181.130");
-        factory.setUsername("admin");
-        factory.setPassword("123");
+        factory.setHost("106.14.139.83");
+        factory.setUsername("guest");
+        factory.setPassword("guest");
         factory.setPort(5672);
         Connection connection = factory.newConnection();
         return connection.createChannel();
