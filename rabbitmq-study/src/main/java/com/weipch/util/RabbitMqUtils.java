@@ -14,7 +14,7 @@ public class RabbitMqUtils {
         factory.setHost("106.14.139.83");
         factory.setUsername("guest");
         factory.setPassword("guest");
-        factory.setPort(5672);
+        factory.setPort(5673);
         Connection connection = factory.newConnection();
         return connection.createChannel();
     }
