@@ -35,7 +35,7 @@ public class Consumer01 {
 
 		//声明普通交换机和队列
 		channel.exchangeDeclare(NORMAL_EXCHANGE, BuiltinExchangeType.DIRECT);
-		//死信配制 指定死信交换机和死信路由键
+		//在正常队列中设置死信参数 指定死信交换机和死信路由键
 		Map<String, Object> map = new HashMap<>();
 		map.put("x-dead-letter-exchange", DEAD_EXCHANGE);
 		map.put("x-dead-letter-routing-key", "dead-routing-key");
