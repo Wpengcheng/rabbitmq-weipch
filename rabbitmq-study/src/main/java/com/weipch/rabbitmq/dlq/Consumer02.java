@@ -28,9 +28,6 @@ public class Consumer02 {
 		//声明死信交换机和队列
 		channel.exchangeDeclare(DEAD_EXCHANGE, BuiltinExchangeType.DIRECT);
 		channel.queueDeclare(DEAD_QUEUE, false, false, false, null);
-		//绑定
-		channel.queueBind(DEAD_QUEUE, DEAD_EXCHANGE, "dead-routing-key");
-
 		channel.basicConsume(NORMAL_QUEUE, true,
 			(consumerTag, delivery) -> System.out.println("Consumer02:" + new String(delivery.getBody(), StandardCharsets.UTF_8)),
 			(consumerTag, e) -> {});

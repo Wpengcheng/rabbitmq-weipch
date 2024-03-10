@@ -18,10 +18,10 @@ public class Produce {
 
 	public static void main(String[] args) throws Exception {
 		Channel channel = RabbitMqUtils.getChannel();
-		AMQP.BasicProperties properties = new AMQP.BasicProperties().builder().expiration("10000").build();
+		//AMQP.BasicProperties properties = new AMQP.BasicProperties().builder().expiration("10000").build();
 		for (int i = 0; i < 10; i++) {
 			String message = "hello world" + i;
-			channel.basicPublish(NORMAL_EXCHANGE, "normal-routing-key", properties, message.getBytes());
+			channel.basicPublish(NORMAL_EXCHANGE, "normal-routing-key", null, message.getBytes());
 		}
 
 	}

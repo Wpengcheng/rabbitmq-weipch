@@ -2,6 +2,7 @@ package com.weipch.rabbitmq.dlq;
 
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
 import com.weipch.util.RabbitMqUtils;
 
 import java.nio.charset.StandardCharsets;
@@ -38,10 +39,21 @@ public class Consumer01 {
 		Map<String, Object> map = new HashMap<>();
 		map.put("x-dead-letter-exchange", DEAD_EXCHANGE);
 		map.put("x-dead-letter-routing-key", "dead-routing-key");
+		//最大长度
+		//map.put("x-max-length", 6);
 		channel.queueDeclare(NORMAL_QUEUE, false, false, false, map);
 		channel.queueBind(NORMAL_QUEUE, NORMAL_EXCHANGE, "normal-routing-key");
-		channel.basicConsume(NORMAL_QUEUE, true,
-			(consumerTag, delivery) -> System.out.println("Consumer01:" + new String(delivery.getBody(), StandardCharsets.UTF_8)),
-			(consumerTag, e) -> {});
+		DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+			String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
+			if (message.contains("5")){
+				System.out.println("Consumer01接收消息：" + message + "，此消息被拒绝");
+				//拒绝消息并把消息丢入死信队列
+				channel.basicReject(delivery.getEnvelope().getDeliveryTag(), false);
+			}else {
+				System.out.println("Consumer01接收消息：" + message);
+				channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+			}
+		};
+		channel.basicConsume(NORMAL_QUEUE, false, deliverCallback, (consumerTag, e) -> {});
 	}
 }
