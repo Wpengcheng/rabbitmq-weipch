@@ -77,28 +77,28 @@ public class TTLQueueConfig {
 		return QueueBuilder.durable(DEAD_LETTER_QUEUE).build();
 	}
 
-	//    绑定
+	//绑定
 	@Bean
 	public Binding queueABuildingX(@Qualifier("queueA") Queue queueA, @Qualifier("xExchange") DirectExchange xExchange) {
 
 		return BindingBuilder.bind(queueA).to(xExchange).with("XA");
 	}
 
-	//    绑定
+	//绑定
 	@Bean
 	public Binding queueBBuildingX(@Qualifier("queueB") Queue queueB, @Qualifier("xExchange") DirectExchange xExchange) {
 
 		return BindingBuilder.bind(queueB).to(xExchange).with("XB");
 	}
 
-	//    绑定
+	//绑定
 	@Bean
 	public Binding queueCBuildingX(@Qualifier("queueC") Queue queueC, @Qualifier("xExchange") DirectExchange xExchange) {
 
 		return BindingBuilder.bind(queueC).to(xExchange).with("XC");
 	}
 
-	//    绑定
+	//绑定
 	@Bean
 	public Binding queueDBuildingY(@Qualifier("queueD") Queue queueD, @Qualifier("yExchange") DirectExchange yExchange) {
 

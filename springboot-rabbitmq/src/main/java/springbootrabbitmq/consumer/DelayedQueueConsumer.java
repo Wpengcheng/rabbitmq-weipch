@@ -16,6 +16,6 @@ public class DelayedQueueConsumer {
     @RabbitListener(queues = DelayedQueueConfig.DELAYED_QUEUE_NAME)
     public void receiveDelayedQueue(Message message) {
         String msg = new String(message.getBody());
-        log.info("当前时间：{}，收到延迟队列的消息：{}", new Date().toString(), msg);
+        log.info("当前时间：{}，收到延迟队列的消息：{}", new Date(), msg);
     }
 }
