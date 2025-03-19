@@ -76,7 +76,7 @@ public class CallbackProducer {
 
         // 测试路由失败 addReturnListener
         channel.basicPublish(CALLBACK_EXCHANGE, "callback-routing-key1", true, null, "message".getBytes());
-
+        // 不要立即关闭连接，否则生产者监听器不会收到消息
         Thread.sleep(10000);
         channel.close();
 

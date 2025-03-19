@@ -7,6 +7,10 @@ import com.weipch.util.RabbitMqUtils;
 import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
+/**
+ * 异步发布确认示例
+ */
+
 public class AsyncPublisherConfirmExample {
 	private static final String QUEUE_NAME = "my_queue";
 

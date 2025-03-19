@@ -10,6 +10,10 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * 批量发布确认
+ */
+
 public class BatchPublisherConfirmExample {
 	private static final String QUEUE_NAME = "my_queue";
 
