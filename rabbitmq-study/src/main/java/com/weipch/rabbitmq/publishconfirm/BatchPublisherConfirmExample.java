@@ -12,9 +12,12 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * 批量发布确认
+ * 批量发布确认模式允许在一次性确认多个消息是否成功被服务器接收，这在大量消息的场景中可以提高效率。
+ * 缺点：当一批消息中有一条消息发送失败时，整个批量确认失败，可能需要重新发送整批消息且不知道是哪条消息失败。
  */
 
 public class BatchPublisherConfirmExample {
+
 	private static final String QUEUE_NAME = "my_queue";
 
 	public static void main(String[] args) throws Exception {
