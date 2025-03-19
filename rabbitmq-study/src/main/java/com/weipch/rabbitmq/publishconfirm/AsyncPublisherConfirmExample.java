@@ -1,4 +1,4 @@
-package com.weipch.rabbitmq;
+package com.weipch.rabbitmq.publishconfirm;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.ConfirmCallback;
